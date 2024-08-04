@@ -11,22 +11,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  //this selected index is to control the bottom nav bar
+  // This selected index is to control the bottom nav bar
   int _selectedIndex = 0;
 
-  //this method will update our selected index
-  //when user tap on the bottom nav bar
+  // This method will update our selected index
+  // when user taps on the bottom nav bar
   void navigateBottomBar(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
 
-  //pages to navigate
+  // Pages to navigate
   final List<Widget> _pages = [
-    //shop page
+    // Shop page
     const ShopPage(),
-    //cart page
+    // Cart page
     const CartPage(),
   ];
 
@@ -35,6 +35,59 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       bottomNavigationBar: MyBottomNavbar(
         onTabChange: (index) => navigateBottomBar(index),
+      ),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              icon: Icon(Icons.menu),
+            );
+          },
+        ),
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.grey[700],
+        child: Column(
+          children: [
+            // Logo at the top
+            DrawerHeader(
+              child: Image.asset(
+                'img/logo.png',
+                color: Colors.white,
+              ),
+            ),
+            // Main menu items
+            Padding(
+              padding: const EdgeInsets.only(left: 25.0),
+              child: ListTile(
+                leading: Icon(Icons.home, color: Colors.white),
+                title: Text('Home', style: TextStyle(color: Colors.white)),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 25.0),
+              child: ListTile(
+                leading: Icon(Icons.info, color: Colors.white),
+                title: Text('About', style: TextStyle(color: Colors.white)),
+              ),
+            ),
+            // Spacer to push logout to the bottom
+            Spacer(),
+            // Logout button at the bottom
+            Padding(
+              padding: const EdgeInsets.only(left: 25.0, bottom: 30),
+              child: ListTile(
+                leading: Icon(Icons.logout_outlined, color: Colors.white),
+                title: Text('Logout', style: TextStyle(color: Colors.white)),
+              ),
+            ),
+          ],
+        ),
       ),
       body: _pages[_selectedIndex],
     );
