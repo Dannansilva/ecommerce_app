@@ -45,7 +45,10 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
-              icon: Icon(Icons.menu),
+              icon: Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Icon(Icons.menu),
+              ),
             );
           },
         ),
