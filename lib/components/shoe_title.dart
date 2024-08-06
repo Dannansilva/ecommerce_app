@@ -13,14 +13,62 @@ class ShoeTitle extends StatelessWidget {
       margin: EdgeInsets.only(left: 25),
       width: 280,
       decoration: BoxDecoration(
-        color: Colors.grey[100],
+        color: Colors.black,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           //shoe pic
+          ClipRRect(
+              borderRadius: BorderRadius.circular(40),
+              child: Image.asset(shoe.imagePath)),
           //description
+          Text(
+            shoe.description,
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15),
+          ),
           //price + details
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    //Shoe name
+                    Text(
+                      shoe.name,
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    //price
+                    Text(
+                      shoe.price,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                      ),
+                    ),
+
+                    //plus button
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25)),
+                    child: Icon(Icons.add, color: Colors.black),
+                  ),
+                ),
+              ],
+            ),
+          )
           //Button to add to chart
         ],
       ),

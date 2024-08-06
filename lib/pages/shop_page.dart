@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:ecommerceapp/components/shoe_title.dart';
+import 'package:ecommerceapp/models/shoe.dart';
 import 'package:flutter/material.dart';
 
 class ShopPage extends StatefulWidget {
@@ -19,7 +20,9 @@ class _ShopPageState extends State<ShopPage> {
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
           child: Container(
             padding: EdgeInsets.all(25),
-            decoration: BoxDecoration(color: Colors.grey[500]),
+            decoration: BoxDecoration(
+                color: Colors.grey[500],
+                borderRadius: BorderRadius.circular(30)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -65,11 +68,25 @@ class _ShopPageState extends State<ShopPage> {
           ),
         ),
         SizedBox(height: 10),
-        Expanded(child: ListView.builder(
-          itemBuilder: (context, index) {
-            return Text('hii');
-          },
-        ))
+        Expanded(
+          child: ListView.builder(
+            itemCount: 4,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              // create a shoe
+              Shoe shoe = Shoe(
+                  name: 'Air Jordan',
+                  price: '240',
+                  description: 'cool shoe',
+                  imagePath: 'img/shoe1.png');
+              return ShoeTitle(shoe: shoe);
+            },
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 25.0, left: 25, right: 25),
+          child: Divider(color: Colors.white),
+        ),
       ],
     );
   }
