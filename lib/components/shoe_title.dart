@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 
 class ShoeTitle extends StatelessWidget {
   Shoe shoe;
-  ShoeTitle({super.key, required this.shoe});
+  void Function()? OnTap;
+  ShoeTitle({super.key, required this.shoe, required this.OnTap});
 
   @override
   Widget build(BuildContext context) {
@@ -52,18 +53,20 @@ class ShoeTitle extends StatelessWidget {
                         fontSize: 15,
                       ),
                     ),
-
-                    //plus button
                   ],
                 ),
+                //plus button
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(25)),
-                    child: Icon(Icons.add, color: Colors.black),
+                  child: GestureDetector(
+                    onTap: OnTap,
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(25)),
+                      child: Icon(Icons.add, color: Colors.black),
+                    ),
                   ),
                 ),
               ],
